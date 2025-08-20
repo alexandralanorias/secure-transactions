@@ -1,0 +1,148 @@
+{
+  "info": {
+    "name": "Secure Transactions API",
+    "_postman_id": "b72a78e9-1a4b-43da-8d9e-63ef1b66b24b",
+    "description": "Postman collection for testing the Secure Transactions Spring Boot API with authentication and CRUD.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/auth/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["auth", "register"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"alex\",\n  \"password\": \"StrongPassw0rd!\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Transactions - Create",
+      "request": {
+        "method": "POST",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "alex", "type": "string" },
+            { "key": "password", "value": "StrongPassw0rd!", "type": "string" }
+          ]
+        },
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/transactions",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 123.45,\n  \"description\": \"Test transaction\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Transactions - List Mine",
+      "request": {
+        "method": "GET",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "alex", "type": "string" },
+            { "key": "password", "value": "StrongPassw0rd!", "type": "string" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transactions/mine",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions", "mine"]
+        }
+      }
+    },
+    {
+      "name": "Transactions - Update by ID",
+      "request": {
+        "method": "PUT",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "alex", "type": "string" },
+            { "key": "password", "value": "StrongPassw0rd!", "type": "string" }
+          ]
+        },
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://localhost:8080/api/transactions/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions", "1"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 200.00,\n  \"description\": \"Updated transaction\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Transactions - Delete by ID",
+      "request": {
+        "method": "DELETE",
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "alex", "type": "string" },
+            { "key": "password", "value": "StrongPassw0rd!", "type": "string" }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transactions/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions", "1"]
+        }
+      }
+    },
+    {
+      "name": "Get All Transactions",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/transactions/all",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions", "all"]
+        },
+        "auth": {
+          "type": "basic",
+          "basic": [
+            { "key": "username", "value": "admin", "type": "string" },
+            { "key": "password", "value": "AdminPass123!", "type": "string" }
+          ]
+        }
+      }
+    }
+  ]
+}
